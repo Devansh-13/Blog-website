@@ -1,37 +1,36 @@
+import styled from "@emotion/styled";
+import { AppBar,Toolbar } from "@mui/material";
+import {Link} from "react-router-dom";
 
-import { AppBar, Toolbar, styled, Button } from '@mui/material'; 
-import { Link } from 'react-router-dom';
-
-import { useNavigate } from 'react-router-dom';
-
-
-const Component = styled(AppBar)`
-    background: #FFFFFF;
-    color: black;
-`;
-
-const Container = styled(Toolbar)`
-    justify-content: center;
-    & > a {
-        padding: 20px;
-        color: #000;
-        text-decoration: none;
-    }
+const Component=styled(AppBar)`
+background-color: #fff;
 `
 
-const Header = () => {
-
-    const navigate = useNavigate();
-
-    const logout = async () => navigate('/account');
+const Container=styled(Toolbar)`
+justify-content:space-around;
+> a{
+    color:black;
+    text-decoration:none;
+    font-family: 'Noto Sans JP', sans-serif;
+ 
+    
+   
+}
+`
+const Header=()=>{
+    const handleLogout=()=>{
         
+        // clear the session  storage access token
+        sessionStorage.removeItem("accesstoken");
+      }
+    
     return (
         <Component>
             <Container>
-                <Link to='/'>HOME</Link>
-                <Link to='/about'>ABOUT</Link>
-                <Link to='/contact'>CONTACT</Link>
-                <Link to='/account'>LOGOUT</Link>
+                <Link to="/">HOME</Link>
+                <Link to="/about">ABOUT</Link>
+                <Link to="/contact">CONTACT</Link>
+                <Link to="/login" onClick={()=>handleLogout()}>LOGOUT</Link>
             </Container>
         </Component>
     )

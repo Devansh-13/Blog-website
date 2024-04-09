@@ -1,13 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const Connection = async (username, password) => {
-    const URL = `mongodb://${username}:${password}@blogweb-shard-00-00.ch1hk.mongodb.net:27017,blogweb-shard-00-01.ch1hk.mongodb.net:27017,blogweb-shard-00-02.ch1hk.mongodb.net:27017/BLOG?ssl=true&replicaSet=atlas-lhtsci-shard-0&authSource=admin&retryWrites=true&w=majority`;
-    try {
-        await mongoose.connect(URL, { useNewUrlParser: true })
-        console.log('Database connected successfully');
-    } catch (error) {
-        console.log('Error while connecting to the database ', error);
+const Connection=async (dbName,pass)=>{
+    
+    let URL="mongodb+srv://devansh12_02:chichore123@cluster0.ylso8me.mongodb.net/Blog?retryWrites=true&w=majority&appName=Cluster0";
+
+    // URL=URL.replace("<PASSWORD>",pass).replace("<DBNAME>",dbName);
+    
+    try{
+        await mongoose.connect(URL);
+        console.log("--------------- Database Connected --------------------");
     }
-};
+    catch(error){
+        console.log(`Error ${error}`);
+    }
+}
 
 export default Connection;
